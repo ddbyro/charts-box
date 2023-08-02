@@ -1,0 +1,11 @@
+accessMode: ReadWriteOnce
+capacity:
+  storage: 10Gi
+mountOptions:
+  - nfsvers=4
+nfs:
+  path: ""
+  server: ""
+persistentVolumeReclaimPolicy: Delete
+storageClassName: nfs-client
+volumeMode: Filesystem
