@@ -11,5 +11,4 @@ spec:
     requests:
       storage: {{ .Values.storageRequest | quote }}
   storageClassName: {{ .Values.storageClass | quote }}
-  volumeName: nfs
 {{- end }}
