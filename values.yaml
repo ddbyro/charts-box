@@ -1,0 +1,20 @@
+persistentVolumeClaim:
+  enabled: false
+  accessModes:
+    - ReadWriteMany
+  storageClass: "nfs-client"
+  storageRequest: 1Mi
+
+persistentVolume:
+  enabled: false
+  accessMode: ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  mountOptions:
+    - nfsvers=4
+  nfs:
+    path: ""
+    server: ""
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: nfs-client
+  volumeMode: Filesystem

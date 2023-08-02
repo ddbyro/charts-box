@@ -1,5 +1,0 @@
-pvc:
-  accessModes:
-    - ReadWriteMany
-  storageClass: "nfs-client"
-  storageRequest: 1Mi
