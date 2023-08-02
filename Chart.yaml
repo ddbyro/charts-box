@@ -9,7 +9,7 @@ version: 0.0.1
 appVersion: 0.0.1
 
 dependencies:
-  - name: persistentVolume
+  - name: persistent-volume-claim
     version: 0.1.0
-  - name: persistentVolumeClaim
+  - name: persistent-volume
     version: 0.1.0
