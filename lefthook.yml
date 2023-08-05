@@ -1,0 +1,23 @@
+# EXAMPLE USAGE:
+#
+#   Refer for explanation to following link:
+#   "https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md"
+
+# pre-push:
+#   commands:
+#     packages-audit:
+#       tags: frontend security
+#       run: yarn audit
+#     gems-audit:
+#       tags: backend security
+#       run: bundle audit
+
+pre-commit:
+# scripts:
+#   "branch-name-check":
+#     runner: bash
+  commands:
+    format-docs:
+      run: (cd "$PWD"/charts && helm-docs) && cat "$PWD"/charts/*/README.md  > "$PWD"/common/README.md
+    git-add-readme:
+      run: git add $PWD/README.md && git add "$PWD"/*/README.md
