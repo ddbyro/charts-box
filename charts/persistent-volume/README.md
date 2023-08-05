@@ -10,7 +10,7 @@ A Helm chart for Kubernetes
 |-----|------|---------|-------------|
 | accessMode | string | `"ReadWriteOnce"` |  |
 | capacity.storage | string | `"10Gi"` |  |
-| enabled | bool | `false` |  |
+| enabled | bool | `false` | enable persistent-volume chart |
 | mountOptions[0] | string | `"nfsvers=4"` |  |
 | nfs.path | string | `""` |  |
 | nfs.server | string | `""` |  |
