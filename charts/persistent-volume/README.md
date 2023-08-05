@@ -11,7 +11,7 @@ A Helm chart for Kubernetes
 | accessMode | string | `"ReadWriteOnce"` | set accessMode |
 | capacity.storage | string | `"10Gi"` | set desired storage capacity |
 | enabled | bool | `false` | enable persistent-volume chart |
-| mountOptions[0] | string | `"nfsvers=4"` |  |
+| mountOptions | list | `["nfsvers=4"]` | mount options for nfs volume |
 | nfs.path | string | `""` | path to nfs share on nfs server |
 | nfs.server | string | `""` | set nfs server host name or ip |
 | persistentVolumeReclaimPolicy | string | `"Delete"` | set volume reclaim policy |
