@@ -1,0 +1,10 @@
+persistentVolumeClaim:
+  # -- enable persistent-volume-claim chart
+  enabled: false
+  # -- set access mode for persistent-volume-claim
+  accessModes:
+    - ReadWriteMany
+  # -- set storage class
+  storageClass: "nfs-client"
+  # -- set desired size for persistent-volume-claim
+  storageRequest: 1Mi

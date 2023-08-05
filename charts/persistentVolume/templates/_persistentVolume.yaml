@@ -1,0 +1,27 @@
+{{- define "lib-chart.persistentVolume" }}
+{{- if .Values.persistentVolume.enabled -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "chart.fullname" . }}
+  labels:
+  {{- include "chart.labels" . | nindent 4 }}
+spec:
+  accessModes:
+  - {{ .Values.persistentVolume.accessMode}}
+  capacity:
+    storage: {{ .Values.persistentVolume.capacity.storage }}
+  {{ if .Values.persistentVolume.mountOptions }}
+  mountOptions:
+  {{ .Values.persistentVolume.mountOptions }}
+  {{ end }}
+  {{ if .Values.persistentVolume.nfs }}
+  nfs:
+    path: {{ .Values.persistentVolume.nfs.path }}
+    server: {{ .Values.persistentVolume.nfs.server }}
+  {{ end }}
+  persistentVolumeReclaimPolicy: {{ .Values.persistentVolume.persistentVolumeReclaimPolicy }}
+  storageClassName: {{ .Values.persistentVolume.storageClassName }}
+  volumeMode: {{ .Values.persistentVolume.volumeMode }}
+  {{- end -}}
+  {{- end -}}

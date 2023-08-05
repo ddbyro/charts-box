@@ -1,0 +1,22 @@
+persistentVolume:
+  # -- enable persistent-volume chart
+  enabled: false
+  # -- set accessMode
+  accessMode: ReadWriteOnce
+  capacity:
+    # -- set desired storage capacity
+    storage: 10Gi
+  # -- mount options for nfs volume
+  mountOptions:
+    - nfsvers=4
+  nfs:
+    # -- path to nfs share on nfs server
+    path: ""
+    # -- set nfs server host name or ip
+    server: ""
+  # -- set volume reclaim policy
+  persistentVolumeReclaimPolicy: Delete
+  # --  set storage class
+  storageClassName: nfs-client
+  # -- set volume mode
+  volumeMode: Filesystem
