@@ -1,0 +1,19 @@
+{{- define "deploymentLibrary.service" -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.deployment.service.name }}
+  labels:
+  {{- include "chart.labels" . | nindent 4 }}
+spec:
+  internalTrafficPolicy: Cluster
+  ports:
+    - name: {{ .Values.deployment.service.ports.name}}
+      port: {{ .Values.deployment.service.ports.port }}
+      protocol: {{ .Values.deployment.service.ports.protocol }}
+      targetPort: {{ .Values.deployment.service.ports.targetPort }}
+  selector:
+    app: {{ .Values.deployment.service.name }}
+  sessionAffinity: None
+  type: {{ .Values.deployment.service.type }}
+  {{- end -}}

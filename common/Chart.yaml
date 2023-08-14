@@ -6,9 +6,6 @@ type: application
 version: 0.0.1
 
 dependencies:
-  - name: persistentVolumeClaim
-    version: 0.1.0
-    repository: file://../charts/persistentVolumeClaim/
-  - name: persistentVolume
-    version: 0.1.0
-    repository: file://../charts/persistentVolume/
+  - name: deployment
+    version: 0.0.1
+    repository: file://../charts/deployment/

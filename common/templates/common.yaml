@@ -1,1 +1,9 @@
-{{ include "lib-chart.persistentVolumeClaim" . }}
+{{ include "deploymentLibrary.configmap" . }}
+---
+{{ include "deploymentLibrary.deployment" . }}
+---
+{{ include "deploymentLibrary.persistentVolumeClaim" . }}
+---
+{{ include "deploymentLibrary.service" . }}
+---
+{{ include "deploymentLibrary.virtualservice" .}}

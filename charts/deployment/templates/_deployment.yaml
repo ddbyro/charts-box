@@ -1,0 +1,37 @@
+{{- define "deploymentLibrary.deployment" -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.deployment.service.name }}
+  name: {{ .Values.deployment.service.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.service.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.service.name }}
+    spec:
+      containers:
+        - image: "{{ .Values.deployment.deploymentValues.image.repository }}:{{ .Values.deployment.deploymentValues.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.deployment.deploymentValues.image.pullPolicy }}
+          name: {{ .Values.deployment.service.name }}
+          ports:
+            - containerPort: {{ .Values.deployment.service.ports.port }}
+          resources: {}
+          {{- if .Values.deployment.persistentVolumeClaim.enabled }}
+          volumeMounts:
+            - mountPath: {{ .Values.deployment.deploymentValues.volumeMounts.mountPath }}
+              name: {{ .Values.deployment.service.name }}
+          {{- end }}
+      {{- if .Values.deployment.configmap.enabled -}}
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: {{ .Values.deployment.service.name }}
+          name: {{ .Values.deployment.service.name }}
+       {{- end -}}
+{{- end -}}
