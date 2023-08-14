@@ -1,0 +1,21 @@
+{{- define "deploymentLibrary.virtualservice" -}}
+{{- if .Values.deployment.virtual_service.enabled -}}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ .Values.deployment.service.name }}-vs
+  namespace: {{ .Values.deployment.virtual_service.namespace }}
+spec:
+  gateways:
+    - {{ .Values.deployment.virtual_service.gateways }}
+  hosts:
+    - {{ .Values.deployment.virtual_service.hosts }}
+  http:
+    - route:
+        - destination:
+            host: {{ .Values.deployment.service.name }}.{{ .Release.Namespace}}.svc.cluster.local
+            port:
+              number: {{ .Values.deployment.service.ports.port }}
+
+  {{- end -}}
+  {{- end -}}

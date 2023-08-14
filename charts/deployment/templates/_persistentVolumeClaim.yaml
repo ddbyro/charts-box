@@ -1,0 +1,16 @@
+{{- define "deploymentLibrary.persistentVolumeClaim" -}}
+{{- if .Values.deployment.persistentVolumeClaim.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "chart.fullname" . }}
+  labels:
+  {{- include "chart.labels" . | nindent 4 }}
+spec:
+  accessModes: {{ .Values.deployment.persistentVolumeClaim.accessModes }}
+  resources:
+    requests:
+      storage: {{ .Values.deployment.persistentVolumeClaim.storageRequest | quote }}
+  storageClassName: {{ .Values.deployment.persistentVolumeClaim.storageClass | quote }}
+{{- end -}}
+{{- end -}}

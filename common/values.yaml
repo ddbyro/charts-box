@@ -1,34 +1,48 @@
-persistentVolumeClaim:
-  # -- enable persistent-volume-claim chart
-  enabled: true
-  # -- set access mode for persistent-volume-claim
-  accessModes:
-    - ReadWriteMany
-  # -- set storage class
-  storageClass: "nfs-client"
-  # -- set desired size for persistent-volume-claim
-  storageRequest: 1Mi
+deployment:
+  deploymentValues:
+    image:
+      repository: ""
+      pullPolicy: Always
+      tag:
+    volumeMounts:
+      mountPath: ""
+
+  service:
+    name: ""
+    ports:
+      name: http
+      protocol: TCP
+      port: 5002
+      targetPort: 5002
+    type: ClusterIP
+
+  persistentVolumeClaim:
+    # -- enable persistent-volu
+    enabled: false
+    # -- set access mode for pe
+    accessModes:
+      - ReadWriteMany
+    # -- set storage class
+    storageClass: "nfs-client"
+    # -- set desired size for p
+    storageRequest: 1Mi
+
+  configmap:
+    enabled: false
+
+  virtual_service:
+    enabled: true
+    name:
+    namespace: istio-system
+    gateways: ""
+    hosts: ""
+    http:
+      route:
+        destination:
+          host: ""
+          port:
+            number: 5002
 
 
-persistentVolume:
-  # -- enable persistent-volume chart
-  enabled: false
-  # -- set accessMode
-  accessMode: ReadWriteOnce
-  capacity:
-    # -- set desired storage capacity
-    storage: 10Gi
-  # -- mount options for nfs volume
-  mountOptions:
-    - nfsvers=4
-  nfs:
-    # -- path to nfs share on nfs server
-    path: ""
-    # -- set nfs server host name or ip
-    server: ""
-  # -- set volume reclaim policy
-  persistentVolumeReclaimPolicy: Delete
-  # --  set storage class
-  storageClassName: nfs-client
-  # -- set volume mode
-  volumeMode: Filesystem
+
+
